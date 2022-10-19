@@ -1,7 +1,7 @@
 const gql = require("graphql-tag");
 
 module.exports = gql`
-  type Post { #Post Interface
+  type Post { # Post Interface
     id: ID!
     body: String!
     createdAt: String!
@@ -20,11 +20,16 @@ module.exports = gql`
     confirmPassword: String!
     email: String!
   }
+  input LoginInput {
+    userName: String!
+    password: String!
+  }
   type Query { # define result types of queries
     getPosts: [Post]
     getUsers: [User]
   }
   type Mutation {
-    register(registerInput: RegisterInput): User
+    register(registerInput: RegisterInput): User!
+    login(loginInput: LoginInput): User
   }
 `;
